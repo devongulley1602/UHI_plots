@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Annual Cycles</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 5px;
+    }
+    .box {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 5px;
+      text-align: center;
+      width: 45%;
+      margin: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 2px;
+    }
+    p {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 style="text-align: center; margin-top: 30px;">Average Annual Cycles Grouped by Month</h2>
+  <p style="text-align: center; max-width: 800px; margin: 10px auto 30px; font-size: 1em; color: #444;">
+    The following interactive graphs show the average annual cycles of temperature (in Kelvin) and humidity (as a fraction from 0 to 1) grouped by month to analyse seasonal trends in urban (50% or greater urban fraction) and rural (less than 1% urban fraction) areas. It displays these for when CLASS alone is included in the surface parametrisation, and when CLASS and TEB are both included.
+  </p>
+
+  <div class="container">
+    <div class="box">
+      <iframe src="tas_monthly_average_annual_series.html" title="TAS"></iframe>
+      <p>Average temperature annual cycle grouped by month and separated by urban fraction in Kelvin.</p>
+    </div>
+    <div class="box">
+      <iframe src="huss_monthly_average_annual_series.html" title="HUSS"></iframe>
+      <p>Average absolute humidity annual cycle grouped by month and separated by urban fraction.</p>
+    </div>
+    <div class="box">
+      <iframe src="tasmax_monthly_average_annual_series.html" title="TASMAX"></iframe>
+      <p>Average maximum daily temperature annual cycle grouped by month and separated by urban fraction in Kelvin.</p>
+    </div>
+    <div class="box">
+      <iframe src="tasmin_monthly_average_annual_series.html" title="TASMIN"></iframe>
+      <p>Average minimum daily temperature annual cycle grouped by month and separated by urban fraction in Kelvin.</p>
+    </div>
+  </div>
+
+  <h2 style="text-align: center; margin-top: 30px;">Urban Heat Island Cycles Grouped by Month</h2>
+  <p style="text-align: center; max-width: 800px; margin: 10px auto 30px; font-size: 1em; color: #444;">
+    The following show the annual differences between the average annual cycles of temperature and humidity grouped by month within urban areas to that of rural areas. This illustrates the annual cycle of the heat island effect according both simulations (CLASS+TEB or CLASS).
+  </p>
+
+  <div class="container">
+    <div class="box">
+      <iframe src="tas_UHI_monthly_average_annual_series.html" title="TAS - UHI"></iframe>
+      <p>Urban minus rural average temperature differences grouped by month in Celsius</p>
+    </div>
+    <div class="box">
+      <iframe src="huss_UHI_monthly_average_annual_series.html" title="HUSS - UHI"></iframe>
+      <p>Urban minus rural average humidity differences grouped by month.</p>
+    </div>
+    <div class="box">
+      <iframe src="tasmax_UHI_monthly_average_annual_series.html" title="TASMAX - UHI"></iframe>
+      <p>Urban minus rural maximum daily temperature differences grouped by month in Celsius.</p>
+    </div>
+    <div class="box">
+      <iframe src="tasmin_UHI_monthly_average_annual_series.html" title="TASMIN - UHI"></iframe>
+      <p>Urban minus rural minimum daily temperature differences grouped by month in Celsius.</p>
+    </div>
+  </div>
+
+    <h2 style="text-align: center; margin-top: 30px;">Annual Cyclic Impact of TEB+CLASS over CLASS</h2>
+<p style="text-align: center; max-width: 800px; margin: 10px auto 30px; font-size: 1em; color: #444;">
+  Differences between simulations that include both CLASS and TEB compared to those with CLASS alone, within urban and rural areas, are shown below. Negative values indicate a decrease in the field from including TEB, and positive values indicate an increase.
+</p>
+
+<div class="container">
+  <div class="box">
+    <iframe src="tas_TEBdiff_monthly_average_annual_series.html" title="TAS - TEB Diff"></iframe>
+    <p>Temperature difference (CLASS+TEB minus CLASS) over urban areas grouped by month in Celsius.</p>
+  </div>
+  <div class="box">
+    <iframe src="huss_TEBdiff_monthly_average_annual_series.html" title="HUSS - TEB Diff"></iframe>
+    <p>Absolute humidity difference (CLASS+TEB minus CLASS) over urban areas grouped by month.</p>
+  </div>
+  <div class="box">
+    <iframe src="tasmax_TEBdiff_monthly_average_annual_series.html" title="TASMAX - TEB Diff"></iframe>
+    <p>Maximum daily temperature difference (CLASS+TEB minus CLASS) over urban areas grouped by month.</p>
+  </div>
+  <div class="box">
+    <iframe src="tasmin_TEBdiff_monthly_average_annual_series.html" title="TASMIN - TEB Diff"></iframe>
+    <p>Minimum daily temperature difference (CLASS+TEB minus CLASS) over urban areas grouped by month.</p>
+  </div>
+</div>
+
+</body>
+</html>
