@@ -94,7 +94,7 @@
 <div class="figure-entry">
     <div class="figure-title">Static Fields</div>
     <div class="figure-description">
-      Static geophysical fields in the limited area domain. Urban fraction is supplied by the model, and point selections are made on applying a 1.5-cell standard deviation Gaussian blur, in this case to urban fraction for station points. Three categories of (blurred) urban fraction for each station gridpoint is as follows - Rural: [0,1%) Suburban [1%,50%], Urban: (50%,100%]. "MTL" stations have data availability and are near the city. 
+      Static geophysical fields in the limited area domain (LAD). Urban fraction is supplied by the model, and point selections are made on applying a 1.5-cell standard deviation Gaussian blur, in this case to urban fraction for station points. Three categories of (blurred) urban fraction for each station gridpoint is as follows - Rural: [0,1%) Suburban [1%,50%], Urban: (50%,100%]. "MTL stations" have data availability and are near the city in a very limited area domain (VLAD, bounded by 45N-46N,72.58W-74.58W). 
     </div>
     <div class="button-container">
       <a href="https://devongulley1602.github.io/UHI_plots/urban_fraction.pdf" target="_blank">Urban Fraction and Station Classification</a>
@@ -103,18 +103,22 @@
       <a href="https://devongulley1602.github.io/UHI_plots/TEB_fields.html" target="_blank">TEB</a>
     </div>
   </div>
-  
-  <a class="figure-entry" href="https://devongulley1602.github.io/UHI_plots/station_daily_data_1980_2022.html" target="_blank">
-    <div class="figure-title">Station Temperatures - Data Availability and Visualisation</div>
+
+  <div class="figure-entry">
+    <div class="figure-title">Station Characteristics</div>
     <div class="figure-description">
-      From the ECCC 3rd Generation Homogenised Temperature Data for stations within the limited area domain near Montréal from 1980-2022 inclusive.
+      Data availability and visualisation for the ECCC 3rd Generation Homogenised Temperature Data for all LAD stations from 1980-2022 inclusive. "Obs" is the final station set in the VLAD which has removed all stations with elevations >2 urban standard deviations from the urban mean. </div>
+    <div class="button-container">
+      <a href="https://devongulley1602.github.io/UHI_plots/station_daily_data_1980_2022.html" target="_blank">LAD station temperature series</a>
+      <a href="https://devongulley1602.github.io/UHI_plots/MTL_obs" target="_blank">MTL elev/lat distributions</a>
+
     </div>
-  </a>
+  </div>
 
   <div class="figure-entry">
     <div class="figure-title">Summer Climatological Anomalies by Year (Preliminary)</div>
     <div class="figure-description">
-      ECCC 3rd generation homogenised station temperature averages of each year's summer (JJA) between 1980-2022 for selected stations in the limited area domain near Montréal. Anomalies were defined with respect to the average 1980-2010 summer.
+      ECCC 3rd generation homogenised station temperature averages of each year's summer (JJA) between 1980-2022 for selected stations in the LAD with sufficient data availability. Anomalies were defined with respect to the average 1980-2010 summer.
     </div>
     <div class="button-container">
       <a href="https://devongulley1602.github.io/UHI_plots/annual_climatology_tasmin.html" target="_blank">TASMIN</a>
@@ -124,7 +128,7 @@
   <div class="figure-entry">
     <div class="figure-title">Summer Temperatures vs Urban Fraction at Station Locations</div>
     <div class="figure-description">
-      Summer season averaged daily temperatures from the ECCC 3rd Generation Homogenised Temperature dataset for stations filtered on data availability in the limited area domain or (1.5-cell standard deviation Gaussian blurred) model output averages at the same points. Colour bar indicates latitude, with averages plotted against (similarly blurred) urban fraction. MTL stations are within 72-75W and 45-46N.
+      Summer season averaged daily temperatures from the ECCC 3rd Generation Homogenised Temperature dataset for stations filtered on data availability in the LAD or (1.5-cell standard deviation Gaussian blurred) model output averages at the same points. Colour bar indicates latitude, with averages plotted against (similarly blurred) urban fraction. MTL stations are within 72-75W and 45-46N.
     </div>
     <div class="button-container">
       <a href="https://devongulley1602.github.io/UHI_plots/average_summer_daily_temp_vs_urban_fraction_S.html" target="_blank">Observation</a>
