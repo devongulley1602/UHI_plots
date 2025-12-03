@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Urban Heat Island Project Figure Index</title>
 <style>
   body {
@@ -24,7 +22,6 @@
     margin: 0 auto;
   }
 
-  /* Shared box style for all entries */
   .figure-entry {
     display: block;
     background: #fff;
@@ -92,9 +89,9 @@
 <div class="toc">
 
 <div class="figure-entry">
-    <div class="figure-title">Static Fields</div>
+    <div class="figure-title">Static fields</div>
     <div class="figure-description">
-      Static geophysical fields in the limited area domain (LAD). Urban fraction is supplied by the model, and point selections are made on applying a 1.5-cell standard deviation Gaussian blur, in this case to urban fraction for station points. Three categories of (blurred) urban fraction for each station gridpoint is as follows - Rural: [0,1%) Suburban [1%,50%], Urban: (50%,100%]. "MTL stations" have data availability and are near the city in a very limited area domain (VLAD, bounded by 45N-46N,72.58W-74.58W). 
+      Static geophysical fields in the limited area domain (LAD). Urban fraction is supplied by the model, and point selections are made on applying a 1.5-cell standard deviation Gaussian blur, in this case to urban fraction for station points. Three categories of (blurred) urban fraction for each station gridpoint is as follows - Rural: [0,1%) Suburban [1%,50%], Urban: (50%,100%]. "MTL stations" have data availability and are near the city in a subset (bounded by 45N-46N,72.58W-74.58W) of the LAD. 
     </div>
     <div class="button-container">
       <a href="https://devongulley1602.github.io/UHI_plots/urban_fraction.pdf" target="_blank">LAD furban</a>
@@ -105,9 +102,9 @@
   </div>
 
   <div class="figure-entry">
-    <div class="figure-title">Station Characteristics</div>
+    <div class="figure-title">Station characteristics</div>
     <div class="figure-description">
-      Data availability and visualisation for the ECCC 3rd Generation Homogenised Temperature Data for all LAD stations from 1980-2022 inclusive. "Obs" is the final station subset of MTL stations created by removing all stations having too different elevations from urban areas (elevations >2 urban standard deviations from the urban mean). A Kernel Density Estimation was used for drawing continuous distributions.</div>
+      Data availability and visualisation for the ECCC 3rd Generation Homogenised Temperature Data for all LAD stations from 1980-2022 inclusive. "Obs" is the final station subset of MTL stations created by removing all stations having too different elevations from urban areas (elevations &gt;2 urban standard deviations from the urban mean). A Kernel Density Estimation was used for drawing continuous distributions.</div>
     <div class="button-container">
       <a href="https://devongulley1602.github.io/UHI_plots/station_daily_data_1980_2022.html" target="_blank">LAD temperature series</a>
       <a href="https://devongulley1602.github.io/UHI_plots/MTL_obs_elev_lat_distr.html" target="_blank">obs elev/lat distributions</a>
@@ -117,7 +114,7 @@
   </div>
 
   <div class="figure-entry">
-    <div class="figure-title">Obs Climatology</div>
+    <div class="figure-title">Obs climatology</div>
     <div class="figure-description">
       Seasonal climatology 1980-2023 of obs for minimum and maximum daily temperatures. Anomalies are defined with respect to the average 1980-2010 by station type (urban, rural suburban).
     </div>
@@ -127,9 +124,11 @@
       <a href="https://devongulley1602.github.io/UHI_plots/clim_DJF.html" target="_blank">DJF</a>
       <a href="https://devongulley1602.github.io/UHI_plots/clim_MAM.html" target="_blank">MAM</a>
     </div>
-  </div>
+  <div class="button-container">
+      <a href="https://devongulley1602.github.io/UHI_plots/accuracy.html" target="_blank">Model accuracy by season</a>
+    </div></div>
 
-  <div class="figure-entry">
+<div class="figure-entry">
     <div class="figure-title">Summer Temperatures vs Urban Fraction at Station Locations</div>
     <div class="figure-description">
       Summer season averaged daily temperatures from the ECCC 3rd Generation Homogenised Temperature dataset for stations filtered on data availability in the LAD or (1.5-cell standard deviation Gaussian blurred) model output averages at the same points. Colour bar indicates latitude, with averages plotted against (similarly blurred) urban fraction.
@@ -142,20 +141,8 @@
       <a href="https://devongulley1602.github.io/UHI_plots/average_summer_daily_temp_vs_urban_fraction_mtl_C.html" target="_blank">MTL CLASS</a>
       <a href="https://devongulley1602.github.io/UHI_plots/average_summer_daily_temp_vs_urban_fraction_mtl_T.html" target="_blank">MTL TEB+CLASS</a>
     </div>
-  </div>
-
-  <div class="figure-entry">
-    <div class="figure-title">Modelled vs observed average seasonal temperatures at obs stations</div>
-    <div class="button-container">
-      <a href="https://devongulley1602.github.io/UHI_plots/accuracy.html" target="_blank">Accuracy by season</a>
-    </div>
-  </div>
-
-</div>
+  </div></div>
 
 <footer>
 </footer>
-
-</body>
-</html>
-
+</body></html>
