@@ -1,7 +1,7 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urban Heat Island Project Figure Index</title>
+<title>Project Index</title>
 <style>
   body {
     font-family: "Segoe UI", Roboto, sans-serif;
@@ -84,59 +84,86 @@
 </head>
 <body>
 
-<h1>Urban Heat Island Project Figure Index</h1>
+<h1> UHI Project Figure Index</h1>
+
 
 <div class="toc">
 
+<p style="margin-bottom: 20px;">Goal: Evaluate Montréal's urban heat island (UHI) according to CRCM6 output, observations, and the impact of integrating TEB into the surface scheme.</p>
+
 <div class="figure-entry">
-    <div class="figure-title">Static fields</div>
+    <div class="figure-title"> Full fields and unfiltered stations in the LAD </div>
     <div class="figure-description">
-      Static geophysical fields in the limited area domain (LAD). Urban fraction is supplied by the model, and point selections are made on applying a 1.5-cell standard deviation Gaussian blur, in this case to urban fraction for station points. Three categories of (blurred) urban fraction for each station gridpoint is as follows - Rural: [0,1%) Suburban [1%,50%], Urban: (50%,100%]. "MTL stations" have data availability and are near the city in a subset (bounded by 45N-46N,72.58W-74.58W) of the LAD. 
+      <ul>
+        <li> Static CLASS and TEB static geophysical fields in the 1km grid-cell size limited area domain (LAD). </li>
+        <li> CLASS and TEB+CLASS refer to the two different  surface schemes in the CRCM6 LAD output, the latter with the more sophisticated urban surface representation. </li>
+        <li> Data availability and visualisation for the ECCC 3rd Generation Homogenised Temperature Data for all LAD stations from 1980-2022 inclusive. </li>
+      </ul>
+       
     </div>
     <div class="button-container">
-      <a href="https://devongulley1602.github.io/UHI_plots/urban_fraction.pdf" target="_blank">LAD furban</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/urban_fraction_mtl.pdf" target="_blank">MTL furban</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/class_fields.html" target="_blank">CLASS</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/TEB_fields.html" target="_blank">TEB</a>
+      <a href="fields/class_fields.html" target="_blank">CLASS fields in LAD</a>
+      <a href="fields/TEB_fields.html" target="_blank">TEB fields in LAD</a>
+      <a href="climatology/station_daily_data_1980_2022.html" target="_blank">All LAD station temperature series </a>
     </div>
   </div>
 
   <div class="figure-entry">
-    <div class="figure-title">Station characteristics</div>
+    <div class="figure-title">Station characteristics, classification, and filtering </div>
     <div class="figure-description">
-      Data availability and visualisation for the ECCC 3rd Generation Homogenised Temperature Data for all LAD stations from 1980-2022 inclusive. "Obs" is the final station subset of MTL stations created by removing all stations having too different elevations from urban areas (elevations &gt;2 urban standard deviations from the urban mean). A Kernel Density Estimation was used for drawing continuous distributions.</div>
+      <ul>
+        <li> The convention for extracting all model point-values is to subject the modelled field to a 1.5-cell standard deviation Gaussian blur. </li>
+        <li> Urban, suburban, and rural obs stations reside in a model cell with the (blurred) furban CLASS vegetation field of (0%, 0.1%), [0.1%,50%], and (50,100%) respectively. </li>
+        <li> The (blurred) water fraction (i.e. inland lake) is selected to be &lt;20% and stations with weak data availability from 2000-2022 are removed. </li>
+        <li> "Obs" is the final subset of stations in the LAD nearest Montréal with some additional filtering of elevations &gt;2 urban standard deviations from the urban mean. </li>
+        <li> A Kernel Density Estimation was used for drawing continuous distributions to illustrate the filtering steps used to select obs. </li>
+      </ul>
+    </div>
+    
     <div class="button-container">
-      <a href="https://devongulley1602.github.io/UHI_plots/station_daily_data_1980_2022.html" target="_blank">LAD temperature series</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/MTL_obs_elev_lat_distr.html" target="_blank">obs elev/lat distributions</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/urban_fraction_obs.pdf" target="_blank">obs furban</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/urban_fraction_obs_blurred.pdf" target="_blank">obs blurred furban</a>
+      
+      <a href="station_filtering/MTL_obs_elev_lat_distr.html" target="_blank">obs filtering and elev/lat distributions </a>
+      <a href="fields/urban_fraction.pdf" target="_blank">obs locations on furban </a>
+      <a href="fields/urban_fraction_blurred.pdf" target="_blank">obs locations on blurred furban </a>
     </div>
   </div>
 
   <div class="figure-entry">
-    <div class="figure-title">Obs climatology</div>
+    <div class="figure-title">Climatology of obs and simobs</div>
     <div class="figure-description">
-      Seasonal climatology 1980-2023 of obs for minimum and maximum daily temperatures. Anomalies are defined with respect to the average 1980-2010 by station type (urban, rural suburban).
+      <ul>
+        <li> Full seasonal climatology 1980-2023 of obs stations for daily temperature data grouped by year. </li>
+        <li> Anomalies are defined with respect to the average 1980-2010 by station type (urban, rural suburban). </li>
+        <li> "Simobs" seasonal averages are determined by taking a given model's seasonal average, blurring the resulting field and taking the value of the cell corresponding to the obs station. </li>
+        <li> Difference between seasonal simobs and obs gives a model (CLASS or TEB+CLASS) accuracy by season. </li>
+        <li> Unless otherwise noted, obs and simobs refers to these stations in the 2000-2022 time slice constrained by the years that were simulated. </li>
+      </li> 
+      </ul>
+    
     </div>
   <div class="button-container">
-      <a href="https://devongulley1602.github.io/UHI_plots/clim_JJA.html" target="_blank">JJA</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/clim_SON.html" target="_blank">SON</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/clim_DJF.html" target="_blank">DJF</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/clim_MAM.html" target="_blank">MAM</a>
+      <a href="climatology/clim_JJA.html" target="_blank">Climatology <sup>JJA</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub></a>
+      <a href="climatology/clim_SON.html" target="_blank">Climatology <sup>SON</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub></a>
+      <a href="climatology/clim_DJF.html" target="_blank">Climatology <sup>DJF</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub></a>
+      <a href="climatology/clim_MAM.html" target="_blank">Climatology <sup>MAM</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub></a>
     </div>
   <div class="button-container">
-      <a href="https://devongulley1602.github.io/UHI_plots/accuracy.html" target="_blank">Model accuracy by season</a>
+      <a href="accuracy/accuracy.html" target="_blank">Model accuracy by season</a>
     </div></div>
 
 <div class="figure-entry">
-    <div class="figure-title">Summer Temperatures vs Urban Fraction at Station Locations</div>
+    <div class="figure-title"> UHI lines, daily temperatures averaged by season as a function of urban fraction</div>
     <div class="figure-description">
-Modelled and observed seasonal temperature averages for obs stations as a linear function of urban fraction. Latitude colour scale included for clarity. 
-    <div class="button-container">
-      <a href="https://devongulley1602.github.io/UHI_plots/temp_vs_furban_JJA.html" target="_blank">JJA</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/temp_vs_furban_SON.html" target="_blank">SON</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/temp_vs_furban_DJF.html" target="_blank">DJF</a>
-      <a href="https://devongulley1602.github.io/UHI_plots/temp_vs_furban_MAM.html" target="_blank">MAM</a>
+      <ul>
+        <li> Simobs and obs daily temperature averaged by season as a linear function of (blurred) urban fraction. </li>
+        <li> Linear regression of temperatures y against urban fraction x. </li>
+        <li> Station classifications and latitude colour scale included for clarity. </li>
+    </ul>
+     <div class="button-container">
+      <a href="temps_vs_furban/temp_vs_furban_JJA.html" target="_blank"> <sup>JJA</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub> vs furban</a>
+      <a href="temps_vs_furban/temp_vs_furban_SON.html" target="_blank"> <sup>SON</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub> vs furban</a>
+      <a href="temps_vs_furban/temp_vs_furban_DJF.html" target="_blank"> <sup>DJF</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub> vs furban</a>
+      <a href="temps_vs_furban/temp_vs_furban_MAM.html" target="_blank"> <sup>MAM</sup><SPAN STYLE="text-decoration:overline">T</SPAN><sub>daily</sub> vs furban</a>
     </div>
   </div></div>
 
