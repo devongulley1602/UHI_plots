@@ -80,6 +80,48 @@
     font-size: 0.85rem;
     color: #777;
   }
+
+  .figure-entry {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background-color: #f9f9f9;
+}
+
+.button-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-right: 8px;
+    background-color: #fff;
+}
+
+.group-label {
+    font-size: 0.8em;
+    color: #666;
+    margin-right: 4px;
+    font-weight: bold;
+}
+
+.section-group {
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+.section-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
 </style>
 </head>
 <body>
@@ -89,7 +131,7 @@
 
 <div class="toc">
 
-<p style="margin-bottom: 20px;">Goal: Evaluate Montréal's urban heat island using station observations and two CRCM6 simulations to assess impact of the TEB urban canopy model.
+<p style="margin-bottom: 20px;">Estimating the ability of CRCM6/GEM5 using the TEB urban canopy model to simulate Montréal's urban heat island.
 </p>
 
 <div class="figure-entry">
@@ -117,7 +159,8 @@
         <li> Urban, suburban, and rural obs stations reside in a model cell with the (blurred) furban CLASS vegetation field of (0%, 0.1%), [0.1%,50%], and (50,100%) respectively. </li>
         <li> The (blurred) water fraction (i.e. inland lake) is selected to be &lt;20% and stations with weak data availability from 2000-2022 are removed. </li>
         <li> "Obs" is the final subset of stations in the LAD nearest Montréal with some additional filtering of elevations &gt;2 urban standard deviations from the urban mean. </li>
-        <li> A Kernel Density Estimation was used for drawing continuous distributions to illustrate the filtering steps used to select obs. </li>
+        <li> A Kernel Density Estimation was used for drawing continuous distributions to illustrate the filtering steps used to select obs. It's to get a sense of a distribution, but may not be reflective of what one might look like with more data. </li>
+        <li> Temperatures are adjusted to a constant 54.5 m altitude (mean urban station elevation) using DABL assumption for final comparisons. </li>
       </ul>
     </div>
     
@@ -136,7 +179,7 @@
         <li> Full seasonal climatology 1980-2023 of obs stations for daily temperature data grouped by year. </li>
         <li> Anomalies are defined with respect to the average 1980-2010 by station type (urban, rural suburban). </li>
         <li> "Simobs" seasonal averages are determined by taking a given model's seasonal average, blurring the resulting field and taking the value of the cell corresponding to the obs station. </li>
-        <li> Difference between seasonal simobs and obs gives a model (CLASS or TEB+CLASS) accuracy by season. </li>
+        <li> Difference between seasonal simobs and obs gives a model (CLASS or TEB+CLASS) accuracy by season with confidence-intervals based on inter-annual variability. </li>
         <li> Unless otherwise noted, obs and simobs refers to these stations in the 2000-2022 time slice constrained by the years that were simulated. </li>
       </li> 
       </ul>
@@ -170,42 +213,106 @@
   </div>
 </div>
 
-<div class="figure-entry">
-    <div class="figure-title">Temperature Cycles</div>
-    <div class="figure-description">
-      <ul>
-        <li> Diurnal and seasonal cycles. </li>
-    </ul>
-     <div class="button-container">
-      <a href="cycles/diurnal/JJA_diurnal_simobs.html" target="_blank"> JJA Diurnal</a>
-      <a href="cycles/diurnal/SON_diurnal_simobs.html" target="_blank"> SON Diurnal</a>
-      <a href="cycles/diurnal/DJF_diurnal_simobs.html" target="_blank"> DJF Diurnal</a>
-      <a href="cycles/diurnal/MAM_diurnal_simobs.html" target="_blank"> MAM Diurnal</a>
-      <a href="cycles/annual/tasmin_monthly_simobs.html" target="_blank"> tasmin annual</a>
-      <a href="cycles/annual/tasmax_monthly_simobs.html" target="_blank"> tasmax annual</a>
-      <!-- <a href="cycles/diurnal/spread_annual_cycle_simobs.html" target="_blank"> tasmax-tasmin annual</a> -->
+<div class="section-group">
+    <div class="section-title">Temperature Cycles</div>
 
+    <div class="figure-entry">
+        <div class="figure-title">All Temperature Cycles</div>
+        <div class="figure-description">
+            <ul>
+                <li>Diurnal and seasonal cycles for every year.</li>
+            </ul>
+            <div class="button-container">
+                <div class="button-group">
+                    <span class="group-label">Diurnal</span>
+                    <a href="cycles/diurnal/JJA_diurnal_simobs.html" target="_blank">JJA</a>
+                    <a href="cycles/diurnal/SON_diurnal_simobs.html" target="_blank">SON</a>
+                    <a href="cycles/diurnal/DJF_diurnal_simobs.html" target="_blank">DJF</a>
+                    <a href="cycles/diurnal/MAM_diurnal_simobs.html" target="_blank">MAM</a>
+                </div>
+                <div class="button-group">
+                    <span class="group-label">Annual</span>
+                    <a href="cycles/annual/tasmin_monthly_simobs.html" target="_blank">tasmin</a>
+                    <a href="cycles/annual/tasmax_monthly_simobs.html" target="_blank">tasmax</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="figure-entry">
+        <div class="figure-title">Mean Temperature Cycles</div>
+        <div class="figure-description">
+            <ul>
+                <li>Mean diurnal and seasonal cycles with 95% CI based on inter-annual variability.</li>
+            </ul>
+            <div class="button-container">
+                <div class="button-group">
+                    <span class="group-label">Diurnal</span>
+                    <a href="cycles/diurnal/JJA_diurnal_simobs_CI.html" target="_blank">JJA</a>
+                    <a href="cycles/diurnal/SON_diurnal_simobs_CI.html" target="_blank">SON</a>
+                    <a href="cycles/diurnal/DJF_diurnal_simobs_CI.html" target="_blank">DJF</a>
+                    <a href="cycles/diurnal/MAM_diurnal_simobs_CI.html" target="_blank">MAM</a>
+                </div>
+                <div class="button-group">
+                    <span class="group-label">Annual</span>
+                    <a href="cycles/annual/tasmin_monthly_simobs_CI.html" target="_blank">tasmin</a>
+                    <a href="cycles/annual/tasmax_monthly_simobs_CI.html" target="_blank">tasmax</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<div class="section-group">
+    <div class="section-title">UHI Cycles</div>
 
-<div class="figure-entry">
-    <div class="figure-title">UHI Cycles</div>
-    <div class="figure-description">
-      <ul>
-        <li> Diurnal and seasonal UHI cycles. </li>
-    </ul>
-     <div class="button-container">
-      <a href="cycles/diurnal/JJA_UHI_diurnal_simobs.html" target="_blank"> JJA Diurnal</a>
-      <a href="cycles/diurnal/SON_UHI_diurnal_simobs.html" target="_blank"> SON Diurnal</a>
-      <a href="cycles/diurnal/DJF_UHI_diurnal_simobs.html" target="_blank"> DJF Diurnal</a>
-      <a href="cycles/diurnal/MAM_UHI_diurnal_simobs.html" target="_blank"> MAM Diurnal</a>
-      <a href="cycles/annual/tasmin_UHI_monthly_simobs.html" target="_blank"> tasmin annual</a>
-      <a href="cycles/annual/tasmax_UHI_monthly_simobs.html" target="_blank"> tasmax annual</a>
-
+    <div class="figure-entry">
+        <div class="figure-title">All UHI Cycles</div>
+        <div class="figure-description">
+            <ul>
+                <li>Diurnal and seasonal UHI cycles for every year.</li>
+            </ul>
+            <div class="button-container">
+                <div class="button-group">
+                    <span class="group-label">Diurnal</span>
+                    <a href="cycles/diurnal/JJA_UHI_diurnal_simobs.html" target="_blank">JJA</a>
+                    <a href="cycles/diurnal/SON_UHI_diurnal_simobs.html" target="_blank">SON</a>
+                    <a href="cycles/diurnal/DJF_UHI_diurnal_simobs.html" target="_blank">DJF</a>
+                    <a href="cycles/diurnal/MAM_UHI_diurnal_simobs.html" target="_blank">MAM</a>
+                </div>
+                <div class="button-group">
+                    <span class="group-label">Annual</span>
+                    <a href="cycles/annual/tasmin_UHI_monthly_simobs.html" target="_blank">tasmin</a>
+                    <a href="cycles/annual/tasmax_UHI_monthly_simobs.html" target="_blank">tasmax</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="figure-entry">
+        <div class="figure-title">Mean UHI Cycles</div>
+        <div class="figure-description">
+            <ul>
+                <li>Mean diurnal and seasonal UHI cycles with 95% CI based on inter-annual variability.</li>
+            </ul>
+            <div class="button-container">
+                <div class="button-group">
+                    <span class="group-label">Diurnal</span>
+                    <a href="cycles/diurnal/JJA_UHI_diurnal_simobs_CI.html" target="_blank">JJA</a>
+                    <a href="cycles/diurnal/SON_UHI_diurnal_simobs_CI.html" target="_blank">SON</a>
+                    <a href="cycles/diurnal/DJF_UHI_diurnal_simobs_CI.html" target="_blank">DJF</a>
+                    <a href="cycles/diurnal/MAM_UHI_diurnal_simobs_CI.html" target="_blank">MAM</a>
+                </div>
+                <div class="button-group">
+                    <span class="group-label">Annual</span>
+                    <a href="cycles/annual/tasmin_UHI_monthly_simobs_CI.html" target="_blank">tasmin</a>
+                    <a href="cycles/annual/tasmax_UHI_monthly_simobs_CI.html" target="_blank">tasmax</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer>
