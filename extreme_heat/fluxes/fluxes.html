@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Flux Anomalies During Heat Events</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            background-color: #f9fafb;
+            color: #222;
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #222;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 4px 8px;
+            background-color: #fff;
+        }
+
+        .group-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-right: 4px;
+            font-weight: bold;
+        }
+
+        .filter-btn {
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #004080;
+            border-radius: 6px;
+            background: #fff;
+            color: #004080;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .filter-btn:hover {
+            background-color: #004080;
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background-color: #004080;
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+            margin-top: 1rem;
+        }
+
+        .image-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .image-card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .image-info {
+            padding: 12px 16px;
+        }
+
+        .image-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004080;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+
+        .image-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.8em;
+            color: #666;
+            padding: 2px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #004080;
+        }
+
+        .stats {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Heat Flux Anomalies During Extreme Heat</h1>
+
+        <div class="controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+
+            <div class="button-group">
+                <span class="group-label">Flux:</span>
+                <button class="filter-btn" data-filter="hfls">HFLS</button>
+                <button class="filter-btn" data-filter="hfss">HFSS</button>
+            </div>
+
+            <div class="button-group">
+                <span class="group-label">Hot:</span>
+                <button class="filter-btn" data-filter="day">Day</button>
+                <button class="filter-btn" data-filter="night">Night</button>
+                <button class="filter-btn" data-filter="or">Day OR Night</button>
+                <button class="filter-btn" data-filter="and">Day AND Night</button>
+            </div>
+
+            <div class="button-group">
+                <span class="group-label">Model:</span>
+                <button class="filter-btn" data-filter="_C">CLASS</button>
+                <button class="filter-btn" data-filter="_T">TEB+CLASS</button>
+            </div>
+        </div>
+
+        <div class="stats" id="stats">Showing <strong id="imageCount">0</strong> images</div>
+
+        <div class="grid" id="imageGrid"></div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            "hd_anom_hot_day_and_night_hfls_C.png",
+            "hd_anom_hot_day_and_night_hfls_T.png",
+            "hd_anom_hot_day_and_night_hfss_C.png",
+            "hd_anom_hot_day_and_night_hfss_T.png",
+            "hd_anom_hot_day_hfls_C.png",
+            "hd_anom_hot_day_hfls_T.png",
+            "hd_anom_hot_day_hfss_C.png",
+            "hd_anom_hot_day_hfss_T.png",
+            "hd_anom_hot_day_or_night_hfls_C.png",
+            "hd_anom_hot_day_or_night_hfls_T.png",
+            "hd_anom_hot_day_or_night_hfss_C.png",
+            "hd_anom_hot_day_or_night_hfss_T.png",
+            "hd_anom_hot_night_hfls_C.png",
+            "hd_anom_hot_night_hfls_T.png",
+            "hd_anom_hot_night_hfss_C.png",
+            "hd_anom_hot_night_hfss_T.png"
+        ];
+
+        function parseTags(filename) {
+            const tags = [];
+            const name = filename.replace('.png', '');
+
+            // Flux type
+            if (name.includes('hfls')) tags.push('HFLS');
+            if (name.includes('hfss')) tags.push('HFSS');
+
+            // Time period
+            if (name.includes('day_and_night')) {
+                tags.push('Hot Days AND Nights');
+            }  
+            if (name.includes('day_or_night')) {
+                tags.push('Hot Days OR Nights');
+            }
+            if (name.includes('day') && !name.includes('night')) {
+                tags.push('Hot Days');
+            } 
+            if (name.includes('night') && !name.includes('day')) {
+                tags.push('Hot Nights');
+            }
+            
+            // Model type
+            if (name.endsWith('_C')) tags.push('CLASS');
+            if (name.endsWith('_T')) tags.push('TEB+CLASS');
+
+            return tags;
+        }
+
+        function createImageCard(filename) {
+            const tags = parseTags(filename);
+            const displayName = filename.replace('.png', '').replace(/_/g, ' ');
+
+            return `
+                <div class="image-card" data-filename="${filename}" data-tags="${tags.join(',').toLowerCase()}">
+                    <div class="image-wrapper">
+                        <img src="${filename}" alt="${displayName}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect width=%22300%22 height=%22250%22 fill=%22%23e9ecef%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-family=%22Arial%22 font-size=%2214%22%3EImage not found%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">${displayName}</div>
+                        <div class="image-tags">
+                            ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderImages(filteredImages = images) {
+            const grid = document.getElementById('imageGrid');
+            grid.innerHTML = filteredImages.map(img => createImageCard(img)).join('');
+            document.getElementById('imageCount').textContent = filteredImages.length;
+
+            // Add click events for modal
+            document.querySelectorAll('.image-card img').forEach(img => {
+                img.addEventListener('click', () => {
+                    document.getElementById('modalImage').src = img.src;
+                    document.getElementById('modal').classList.add('active');
+                });
+            });
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+                    const cards = document.querySelectorAll('.image-card');
+                    let visibleCount = 0;
+
+                    cards.forEach(card => {
+                        const filename = card.dataset.filename;
+                        const tags = card.dataset.tags;
+
+                        let isVisible = filter === 'all' || filename.includes(filter) || tags.includes(filter.toLowerCase());
+
+                        // NOT logic for day/night
+                        if (filter.toLowerCase() === 'day') {
+                            isVisible = isVisible && !tags.includes('night');
+                        } else if (filter.toLowerCase() === 'night') {
+                            isVisible = isVisible && !tags.includes('day');
+                        }
+
+                        if (isVisible) {
+                            card.classList.remove('hidden');
+                            visibleCount++;
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+
+                    document.getElementById('imageCount').textContent = visibleCount;
+                });
+            });
+
+        // Modal functionality
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('modal').classList.remove('active');
+        });
+
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') {
+                document.getElementById('modal').classList.remove('active');
+            }
+        });
+
+        // Initial render
+        renderImages();
+    </script>
+</body>
+
+</html>

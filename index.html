@@ -133,7 +133,7 @@
 
 <p style="margin-bottom: 20px;">Estimating the ability of CRCM6/GEM5 using the TEB urban canopy model to simulate Montréal's urban heat island.
 </p>
-
+<!-- Full fields and unfiltered stations in the LAD -->
 <div class="figure-entry">
     <div class="figure-title"> Full fields and unfiltered stations in the LAD </div>
     <div class="figure-description">
@@ -150,7 +150,7 @@
       <a href="climatology/station_daily_data_1980_2022.html" target="_blank">All LAD station temperature series </a>
     </div>
   </div>
-
+<!-- Station characteristics, classification, and filtering confounding factors -->
   <div class="figure-entry">
     <div class="figure-title">Station characteristics, classification, and filtering confounding factors </div>
     <div class="figure-description">
@@ -171,7 +171,7 @@
       <a href="fields/furban_blurred_step14.png" target="_blank">obs locations on blurred furban </a>
     </div>
   </div>
-
+<!-- Climatology of obs and simobs -->
   <div class="figure-entry">
     <div class="figure-title">Climatology of obs and simobs</div>
     <div class="figure-description">
@@ -195,7 +195,7 @@
       <a href="accuracy/accuracy.html" target="_blank">Model accuracy by season</a>
     </div>
   </div>
-
+<!-- UHI Lines  -->
 <div class="figure-entry">
     <div class="figure-title"> UHI lines, daily temperatures averaged by season as a function of urban fraction</div>
     <div class="figure-description">
@@ -212,7 +212,7 @@
     </div>
   </div>
 </div>
-
+<!-- Temperature Cycles -->
 <div class="section-group">
     <div class="section-title">Temperature Cycles</div>
 
@@ -263,7 +263,7 @@
     </div>
 
 </div>
-
+<!-- UHI Cyles -->
 <div class="section-group">
     <div class="section-title">UHI Cycles</div>
 
@@ -314,7 +314,81 @@
     </div>
 
 </div>
+<!-- UHI Distributions -->
+<div class="section-group">
+  <div class="section-title">Daily UHI Distributions</div>
 
+  <div class="figure-entry">
+    <div class="figure-title">Distributions by Season</div>
+    <div class="figure-description">
+      <ul>
+        <li>Distribution of daily UHI samples according to each data source.</li>
+      </ul>
+      <div class="button-container">
+        <div class="button-group">
+          <span class="group-label">Minimum daily temperature UHIs</span>
+          <a href="UHI_distributions/distribution_uhi_JJA_tasmin.html" target="_blank">JJA</a>
+          <a href="UHI_distributions/distribution_uhi_SON_tasmin.html" target="_blank">SON</a>
+          <a href="UHI_distributions/distribution_uhi_DJF_tasmin.html" target="_blank">DJF</a>
+          <a href="UHI_distributions/distribution_uhi_MAM_tasmin.html" target="_blank">MAM</a>
+        </div>
+        <div class="button-group">
+          <span class="group-label">Maximum daily temperature UHIs</span>
+          <a href="UHI_distributions/distribution_uhi_JJA_tasmax.html" target="_blank">JJA</a>
+          <a href="UHI_distributions/distribution_uhi_SON_tasmax.html" target="_blank">SON</a>
+          <a href="UHI_distributions/distribution_uhi_DJF_tasmax.html" target="_blank">DJF</a>
+          <a href="UHI_distributions/distribution_uhi_MAM_tasmax.html" target="_blank">MAM</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="figure-entry">
+    <div class="figure-title">Distributions During Extreme Heat</div>
+    <div class="figure-description">
+      <ul>
+        <li>Distribution of daily UHI samples during 99th percentile hottest summer days for all stations adjusted to
+          common altitude.</li>
+      </ul>
+      <div class="button-container">
+        <div class="button-group">
+          <span class="group-label">Minimum daily temperature UHIs for hot:</span>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmin_hot_days.html" target="_blank">Days</a>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmin_hot_nights.html"
+            target="_blank">Nights</a>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmin_hot_days_and_nights.html"
+            target="_blank">Days AND Nights</a>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmin_hot_days_or_nights.html"
+            target="_blank">Days OR Nights</a>
+        </div>
+        <div class="button-group">
+          <span class="group-label">Maximum daily temperature UHIs for hot:</span>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmax_hot_days.html" target="_blank">Days</a>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmax_hot_nights.html"
+            target="_blank">Nights</a>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmax_hot_days_and_nights.html"
+            target="_blank">Days AND Nights</a>
+          <a href="extreme_heat/distributions/distribution_uhi_extreme_tasmax_hot_days_or_nights.html"
+            target="_blank">Days OR Nights</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="figure-entry">
+  <div class="figure-title"> Temperature and Heat Flux Anomalies During Extreme Heat Events</div>
+  <div class="figure-description">
+    <ul>
+      <li> Shaded areas not statistically significant based on Welch's t-test, alpha = 0.05. </li>
+      <li> Taken sampled during hot days, nights, hot days AND nights (intersection), hot days OR nights (union). </li>
+    </ul>
+    <div class="button-container">
+      <a href="extreme_heat/fluxes/fluxes.html" target="_blank"> Flux anomalies</a>
+      <a href="extreme_heat/temperatures/temps.html" target="_blank"> Temperature anomalies</a>
+    </div>
+  </div>
+</div>
 <footer>
 </footer>
 </body></html>
