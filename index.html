@@ -1,7 +1,7 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Index</title>
+<title>Figure Index</title>
 <style>
   body {
     font-family: "Segoe UI", Roboto, sans-serif;
@@ -126,13 +126,15 @@
 </head>
 <body>
 
-<h1> UHI Project Figure Index</h1>
+<h1> Evaluating Montréal's Urban Heat Island - Figure Index</h1>
 
 
 <div class="toc">
 
-<p style="margin-bottom: 20px;">Estimating the ability of CRCM6/GEM5 using the TEB urban canopy model to simulate Montréal's urban heat island.
+<p style="margin-bottom: 20px;">Useful figures illustrating the ability of CRCM6/GEM5 with the TEB Urban Canopy Model to simulate the spatio-temporal
+temperature characteristics of the Montréal region.
 </p>
+
 <!-- Full fields and unfiltered stations in the LAD -->
 <div class="figure-entry">
     <div class="figure-title"> Full fields and unfiltered stations in the LAD </div>
@@ -377,10 +379,24 @@
 </div>
 
 <div class="figure-entry">
+  <div class="figure-title"> UHI Anomalies During Extreme Heat Events</div>
+  <div class="figure-description">
+    <ul>
+      <li> UHI anomalies for tasmin during hot nights and tasmax during hot days for each data source. </li>
+      <li> 95% CI based on Welch's t-test. </li>
+    </ul>
+    <div class="button-container">
+      <a href="extreme_heat/anomaly_heat_event_UHI_tasmin.html" target="_blank"> tasmin during hot nights</a>
+      <a href="extreme_heat/anomaly_heat_event_UHI_tasmax.html" target="_blank"> tasmax during hot days</a>
+    </div>
+  </div>
+</div>
+
+<div class="figure-entry">
   <div class="figure-title"> Temperature and Heat Flux Anomalies During Extreme Heat Events</div>
   <div class="figure-description">
     <ul>
-      <li> Shaded areas not statistically significant based on Welch's t-test, alpha = 0.05. </li>
+      <li> Dotted areas not statistically significant based on Welch's t-test, alpha = 0.05. </li>
       <li> Taken sampled during hot days, nights, hot days AND nights (intersection), hot days OR nights (union). </li>
     </ul>
     <div class="button-container">
@@ -389,6 +405,7 @@
     </div>
   </div>
 </div>
+
 <footer>
 </footer>
 </body></html>
